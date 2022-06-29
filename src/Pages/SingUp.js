@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "../Components/Form";
 import Logo from "../Components/Logo";
 import Page from "../Layouts/Page";
 
 export default function SingUp() {
+  const navigate = useNavigate();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -16,6 +17,7 @@ export default function SingUp() {
   function handleSubmit(e) {
     e.preventDefault();
     setDisabled(true);
+    navigate("/login");
 
     // TODO: enviar dados para o back
   }
@@ -65,7 +67,7 @@ export default function SingUp() {
       },
     ],
     button: {
-      text: "Entrar",
+      text: "Cadastrar",
       disabled,
     },
   };
