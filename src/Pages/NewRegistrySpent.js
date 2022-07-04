@@ -4,9 +4,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Form from "../Components/Form";
 import Page from "../Layouts/Page";
+import { useUserContext } from "../Contexts/UserContext";
 
 export default function NewRegistrySpent() {
+  const UserContext = useUserContext();
   const navigate = useNavigate();
+  const URL = "http://localhost:5000/receipt";
   const [value, setValue] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [disabled, setDisabled] = React.useState(false);
@@ -14,9 +17,20 @@ export default function NewRegistrySpent() {
   function handleSubmit(e) {
     e.preventDefault();
     setDisabled(true);
-    navigate("/receipt");
 
-    // TODO: enviar dados para o back
+    const data = {
+      value: -Number(value),
+      title: description,
+    };
+
+    const promise = axios.post(URL, data, { headers: { email: UserContext.user.email } });
+    promise.then(() => {
+      navigate("/receipt");
+    });
+    promise.catch(() => {
+      alert("ocorreu um erro");
+      setDisabled(false);
+    });
   }
 
   const formData = {
@@ -63,7 +77,7 @@ export default function NewRegistrySpent() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 35px;
+  padding: 25px 35px 0 35px;
   align-items: center;
   box-sizing: border-box;
   text-align: center;

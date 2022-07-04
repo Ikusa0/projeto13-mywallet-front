@@ -4,6 +4,7 @@ import Login from "./Pages/Login";
 import SingUp from "./Pages/SingUp";
 import NewRegistryProfit from "./Pages/NewRegistryProfit";
 import NewRegistrySpent from "./Pages/NewRegistrySpent";
+import Receipt from "./Pages/Receipt";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/sing_up" element={<SingUp />} />
           <Route path="/profit" element={<NewRegistryProfit />} />
           <Route path="/spent" element={<NewRegistrySpent />} />
+          <Route path="/receipt" element={<Receipt />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>

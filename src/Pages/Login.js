@@ -9,6 +9,7 @@ import { useUserContext } from "../Contexts/UserContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const URL = "http://localhost:5000/login";
   const UserContext = useUserContext();
 
   React.useEffect(() => {
@@ -26,7 +27,20 @@ export default function Login() {
     e.preventDefault();
     setDisabled(true);
 
-    // TODO: enviar dados para o back
+    const data = {
+      email,
+      password,
+    };
+
+    const promise = axios.post(URL, data);
+    promise.then((res) => {
+      UserContext.setUser(res.data);
+      navigate("/receipt");
+    });
+    promise.catch(() => {
+      alert("ocorreu um erro");
+      setDisabled(false);
+    });
   }
 
   const formData = {

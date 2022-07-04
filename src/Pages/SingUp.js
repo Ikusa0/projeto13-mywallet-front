@@ -8,18 +8,31 @@ import Page from "../Layouts/Page";
 
 export default function SingUp() {
   const navigate = useNavigate();
+  const URL = "http://localhost:5000/singup";
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [confirmation, setConfirmation] = React.useState("");
   const [disabled, setDisabled] = React.useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
     setDisabled(true);
-    navigate("/login");
+    const data = {
+      email,
+      name,
+      password,
+      confirmation,
+    };
 
-    // TODO: enviar dados para o back
+    const promise = axios.post(URL, data);
+    promise.then(() => {
+      navigate("/login");
+    });
+    promise.catch((err) => {
+      alert("ocorreu um erro");
+      setDisabled(false);
+    });
   }
 
   const formData = {
@@ -57,9 +70,9 @@ export default function SingUp() {
       },
       {
         onChange: (e) => {
-          setConfirmPassword(e.target.value);
+          setConfirmation(e.target.value);
         },
-        value: confirmPassword,
+        value: confirmation,
         placeholder: "Confirme a senha",
         type: "password",
         required: true,

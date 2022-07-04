@@ -17,7 +17,6 @@ import Input from "../Components/Input";
 // }
 
 export default function Form({ data }) {
-  console.log(data);
   return (
     <Container autoComplete="on" onSubmit={data.form.onSubmit}>
       {data.inputs.map((input, index) => (
