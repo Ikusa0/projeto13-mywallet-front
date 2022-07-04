@@ -11,7 +11,7 @@ export default function NewRegistryProfit() {
   const UserContext = useUserContext();
   const navigate = useNavigate();
   const [user, setUser] = [UserContext.user, UserContext.setUser];
-  const URL = "http://localhost:5000/receipt";
+  const URL = "https://projeto13-mywallet-api.herokuapp.com/receipt";
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     const promise = axios.get(URL, { headers: { email: user.email } });

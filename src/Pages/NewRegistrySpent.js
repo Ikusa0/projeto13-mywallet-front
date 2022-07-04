@@ -9,7 +9,7 @@ import { useUserContext } from "../Contexts/UserContext";
 export default function NewRegistrySpent() {
   const UserContext = useUserContext();
   const navigate = useNavigate();
-  const URL = "http://localhost:5000/receipt";
+  const URL = "https://projeto13-mywallet-api.herokuapp.com/receipt";
   const [value, setValue] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [disabled, setDisabled] = React.useState(false);

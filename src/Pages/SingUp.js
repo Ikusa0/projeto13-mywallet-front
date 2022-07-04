@@ -8,7 +8,7 @@ import Page from "../Layouts/Page";
 
 export default function SingUp() {
   const navigate = useNavigate();
-  const URL = "http://localhost:5000/singup";
+  const URL = "https://projeto13-mywallet-api.herokuapp.com/singup";
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
